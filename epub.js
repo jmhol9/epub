@@ -4,9 +4,6 @@ var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
 try {
-    // zipfile is an optional dependency:
-    var ZipFile = require("zipfile").ZipFile;
-} catch (err) {
     // Mock zipfile using pure-JS adm-zip:
     var AdmZip = require('adm-zip');
 
@@ -24,6 +21,8 @@ try {
             return cb(null, buffer);
         });
     };
+} catch (err) {
+	throw new Error("Error mocking ZipFile");
 }
 
 //TODO: Cache parsed data
